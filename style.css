@@ -1,0 +1,210 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background: linear-gradient(to right, #f6f8fc, #dce3f4);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    background: #ffffff;
+    width: 400px;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    animation: fadeIn 0.8s ease-out;
+}
+
+.container:hover {
+    transform: translateY(-4px);
+}
+
+form {
+    margin: 1rem 0;
+}
+
+.form-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.input-group i {
+    position: absolute;
+    top: 50%;
+    left: 0.75rem;
+    transform: translateY(-50%);
+    color: #888;
+}
+
+input {
+    width: 100%;
+    padding: 0.75rem 0.75rem 0.75rem 2.5rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: transparent;
+    font-size: 0.95rem;
+    transition: border 0.3s, background-color 0.3s;
+}
+
+input:focus {
+    outline: none;
+    border-color: #6c63ff;
+    background-color: #f0f4ff;
+}
+
+input::placeholder {
+    color: #bbb;
+}
+
+label {
+    position: absolute;
+    left: 2.5rem;
+    top: 0.75rem;
+    font-size: 0.85rem;
+    color: #999;
+    pointer-events: none;
+    transition: all 0.2s ease;
+}
+
+input:focus ~ label,
+input:not(:placeholder-shown) ~ label {
+    top: -0.7rem;
+    left: 1rem;
+    font-size: 0.7rem;
+    color: #6c63ff;
+    background: white;
+    padding: 0 0.2rem;
+}
+
+.recover {
+    text-align: right;
+    font-size: 0.85rem;
+    margin-top: -1rem;
+    margin-bottom: 1.5rem;
+}
+
+.recover a {
+    color: #6c63ff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.recover a:hover {
+    color: #3f3d56;
+}
+
+button {
+    width: 100%;
+    padding: 0.75rem;
+    background: #6c63ff;
+    color: white;
+    font-size: 1rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background: #574fd6;
+    transform: scale(1.02);
+}
+
+.or {
+    text-align: center;
+    margin: 1rem 0;
+    color: #aaa;
+    font-size: 0.9rem;
+}
+
+.icons {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.icons i {
+    font-size: 1.4rem;
+    margin: 0 10px;
+    padding: 10px;
+    color: #6c63ff;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.icons i:hover {
+    background-color: #6c63ff;
+    color: white;
+    transform: scale(1.1);
+}
+
+.links {
+    text-align: center;
+    margin-top: 1.2rem;
+    font-size: 0.9rem;
+    color: #444;
+}
+
+#signUpButton,
+#signInButton {
+    background: none;
+    border: none;
+    color: #6c63ff;
+    cursor: pointer;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+#signUpButton:hover,
+#signInButton:hover {
+    color: #3f3d56;
+    text-decoration: underline;
+}
+
+.messageDiv {
+    background-color: #6c63ff;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-size: 0.95rem;
+    opacity: 0;
+    animation: fadeOut 6s forwards;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { opacity: 0; }
+}
