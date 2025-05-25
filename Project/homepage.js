@@ -4,7 +4,12 @@ import{getFirestore, getDoc, doc} from "https://www.gstatic.com/firebasejs/10.11
 
 const firebaseConfig = {
     //YOUR COPIED FIREBASE PART SHOULD BE HERE
-
+    apiKey: "AIzaSyDG4B6Bv5_GbYQNRksGlSeYyRRXbOIOS4Q",
+    authDomain: "im-final-project-9abb3.firebaseapp.com",
+    projectId: "im-final-project-9abb3",
+    storageBucket: "im-final-project-9abb3.firebasestorage.app",
+    messagingSenderId: "999122786889",
+    appId: "1:999122786889:web:392cada477bb4f3cf4fd98"
   };
  
   // Initialize Firebase
