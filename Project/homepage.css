@@ -28,7 +28,7 @@ h2 {
 h3 {
     text-align: center;
     font-size: 24px;
-    color: rgb(12,11,11);
+    color: #2e2e2e;
     animation: fadeIn 1s ease-in-out;
     font-weight: 500;
 }
@@ -44,7 +44,7 @@ h3 {
     border-radius: 16px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
     font-weight: 400;
-    color: #111;
+    color: #2e2e2e;
     animation: slideIn 0.5s ease-in-out;
     backdrop-filter: blur(10px);
     transition: all 0.3s ease-in-out;
@@ -131,40 +131,61 @@ img:hover {
 }
 
 
+#sms {
+    margin-left: 200px;
+    width: calc(100% - 200px);
+}
+
 #sms h2 {
     text-align: center;
     font-size: 30px;
-    color: rgb(12,11,11);
+    color: #2e2e2e;
+    margin-bottom: 20px;
 }
 
 .social-links {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-left: 300px;
-    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(150px, 1fr));
+    gap: 20px;
+    margin: 20px auto;
+    max-width: 800px;
+    padding: 0 20px;
+    place-items: center;
 }
 
 .social-link {
     display: flex;
     align-items: center;
+    justify-content: center;
+    flex-direction: column;
     gap: 10px;
     text-decoration: none;
     color: #333;
-    font-size: 20px;
-    padding: 10px;
-    border-radius: 5px;
+    font-size: 18px;
+    padding: 20px;
+    border-radius: 12px;
     transition: all 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    aspect-ratio: 1;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 150px;
+    height: 150px;
+    min-width: 150px;
+    min-height: 150px;
+    margin: 0;
 }
 
 .social-link:hover {
     background-color: #4d556d;
     color: white;
-    transform: translateX(10px);
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 .social-link i {
-    font-size: 24px;
+    font-size: 32px;
+    margin-bottom: 5px;
 }
 
 /* Update input styles */
@@ -193,7 +214,7 @@ input::placeholder {
 
 .form-input {
     width: 100%;
-    max-width: 800px;
+    max-width: 400px;
     padding: 10px;
     border: 1px solid #8ea4e3;
     border-radius: 4px;
@@ -297,6 +318,10 @@ input::placeholder {
 .password-form {
     width: 100%;
     max-width: 450px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
 }
 
 /* Animations */
@@ -342,7 +367,10 @@ input::placeholder {
 }
 
 .message {
-    margin-top: 15px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    margin: 15px auto;
     padding: 10px;
     border-radius: 4px;
 }
@@ -358,5 +386,8 @@ input::placeholder {
 }
 
 .form-group {
+    width: 100%;
     margin-bottom: 20px;
+    text-align: left;
+    position: relative;
 }
