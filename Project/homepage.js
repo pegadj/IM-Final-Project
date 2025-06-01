@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
-import {getAuth, onAuthStateChanged, signOut} from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
-import{getFirestore, getDoc, doc} from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js"
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
+import { getFirestore, getDoc, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js"
 
 const firebaseConfig = {
     //YOUR COPIED FIREBASE PART SHOULD BE HERE
@@ -15,45 +15,62 @@ const firebaseConfig = {
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
 
-  const auth=getAuth();
-  const db=getFirestore();
+  const auth = getAuth();
+  const db = getFirestore();
 
-  onAuthStateChanged(auth, (user)=>{
-    const loggedInUserId=localStorage.getItem('loggedInUserId');
-    if(loggedInUserId){
-        console.log(user);
-        const docRef = doc(db, "users", loggedInUserId);
+  // Add a flag to track initial load
+  let isInitialLoad = true;
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+        const docRef = doc(db, "users", user.uid);
         getDoc(docRef)
-        .then((docSnap)=>{
-            if(docSnap.exists()){
-                const userData=docSnap.data();
-                document.getElementById('loggedUserFName').innerText=userData.firstName;
-                document.getElementById('loggedUserEmail').innerText=userData.email;
-                document.getElementById('loggedUserLName').innerText=userData.lastName;
+        .then((docSnap) => {
+            if(docSnap.exists()) {
+                const userData = docSnap.data();
+                
+                // Update welcome message if on homepage
+                const welcomeMessage = document.getElementById('welcomeMessage');
+                if (welcomeMessage) {
+                    if (isInitialLoad) {
+                        if (!userData.lastLogin) {
+                            welcomeMessage.innerText = `Welcome ${userData.firstName}!`;
+                            updateDoc(docRef, {
+                                lastLogin: new Date().toISOString()
+                            });
+                        } else {
+                            welcomeMessage.innerText = `Welcome back, ${userData.firstName}!`;
+                        }
+                        isInitialLoad = false;
+                    }
+                }
 
-            }
-            else{
-                console.log("no document found matching id")
+                // Update user info elements if they exist
+                const userFName = document.getElementById('loggedUserFName');
+                const userEmail = document.getElementById('loggedUserEmail');
+                const userLName = document.getElementById('loggedUserLName');
+
+                if (userFName) userFName.innerText = userData.firstName;
+                if (userEmail) userEmail.innerText = userData.email;
+                if (userLName) userLName.innerText = userData.lastName;
             }
         })
-        .catch((error)=>{
-            console.log("Error getting document");
-        })
+        .catch((error) => {
+            console.error("Error getting document:", error);
+        });
+    } else if (!isInitialLoad) {
+        window.location.href = 'index.html';
     }
-    else{
-        console.log("User Id not Found in Local storage")
-    }
-  })
+});
 
-  const logoutButton=document.getElementById('logout');
-
-  logoutButton.addEventListener('click',()=>{
-    localStorage.removeItem('loggedInUserId');
+// Update logout handler
+const logoutButton = document.getElementById('logout');
+logoutButton.addEventListener('click', () => {
     signOut(auth)
-    .then(()=>{
-        window.location.href='index.html';
+    .then(() => {
+        window.location.href = 'index.html';
     })
-    .catch((error)=>{
+    .catch((error) => {
         console.error('Error Signing out:', error);
-    })
-  })
+    });
+});

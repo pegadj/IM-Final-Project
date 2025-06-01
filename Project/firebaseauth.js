@@ -1,4 +1,4 @@
- // Import the functions you need from the SDKs you need
+// Import the functions you need from the SDKs you need
  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
  import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
  import{getFirestore, setDoc, doc} from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js"
@@ -73,14 +73,13 @@
     const password=document.getElementById('password').value;
     const auth=getAuth();
 
-    signInWithEmailAndPassword(auth, email,password)
-    .then((userCredential)=>{
+    signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
         showMessage('login is successful', 'signInMessage');
-        const user=userCredential.user;
-        localStorage.setItem('loggedInUserId', user.uid);
-        window.location.href='homepage.html';
+        // Remove localStorage usage and directly redirect
+        window.location.href = 'homepage.html';
     })
-    .catch((error)=>{
+    .catch((error) => {
         const errorCode=error.code;
         if(errorCode==='auth/invalid-credential'){
             showMessage('Incorrect Email or Password', 'signInMessage');
