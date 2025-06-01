@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="homepage.css">
+</head>
+<body>
+    <div class="navbar">
+        <h2> Dashboard </h2>
+        <a href="homepage.html" class="nav-link" data-page="homepage.html">
+            <img src="Home.png" alt="Account"> Home
+        </a> 
+        <a href="Account.html" class="nav-link" data-page="Account.html">
+            <img src="Account.png" alt="Account"> Account
+        </a>
+        <div class="sign-out">
+            <a href="index.html" class="nav-link" data-page="index.html">
+                <img src="Sign out.png" alt="Sign Out"> Sign out
+            </a>
+        </div>
+    </div>
+    <script>
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const page = e.currentTarget.getAttribute('data-page');
+                window.parent.location.href = page;
+            });
+        });
+
+        const currentPage = window.parent.location.pathname.split('/').pop();
+        document.querySelectorAll('.nav-link').forEach(link => {
+            if (link.getAttribute('data-page') === currentPage) {
+                link.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>
